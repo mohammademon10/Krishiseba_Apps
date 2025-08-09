@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My Orders | KrishiSeba</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { background: linear-gradient(135deg, #d0f0c0 0%, #a1d99b 100%); min-height: 100vh; font-family: 'Segoe UI', sans-serif; display: flex; }
+        .sidebar { width: 260px; background: #4caf50; color: white; display: flex; flex-direction: column; padding: 30px 20px; position: fixed; height: 100vh; }
+        .sidebar h2 { text-align: center; margin-bottom: 50px; }
+        .sidebar nav { flex-grow: 1; }
+        .sidebar nav a, .sidebar nav button { color: white; text-decoration: none; padding: 16px 22px; margin-bottom: 14px; border-radius: 10px; display: block; font-weight: 700; background: none; border: none; width: 100%; text-align: left; font-size: 1em; cursor: pointer; }
+        .sidebar nav a:hover, .sidebar nav button:hover, .sidebar nav a.active { background: #388e3c; }
+        .main-content { margin-left: 260px; padding: 40px; flex: 1; }
+        .orders-section { background: #fff; border-radius: 20px; box-shadow: 0 10px 25px rgba(102, 187, 106, 0.18); padding: 30px; }
+        h2 { color: #388e3c; margin-bottom: 20px; text-align: center; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 14px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background: #388e3c; color: #fff; }
+        .status { font-weight: 700; border-radius: 8px; padding: 6px 16px; }
+        .status.pending { background: #fffde7; color: #fbc02d; }
+        .status.completed { background: #e8f5e9; color: #43a047; }
+        .status.cancelled { background: #ffebee; color: #e53935; }
+    </style>
+</head>
+<body>
+<aside class="sidebar">
+    <!-- This sidebar will be for the PROVIDER viewing their orders -->
+    <h2>KrishiSeba Provider</h2>
+    <nav>
+        <a th:href="@{/provider-dashboard}">Dashboard</a>
+        <a th:href="@{/add-equipment}">Add Equipment</a>
+        <a th:href="@{/my-equipment}">My Equipment</a>
+        <a th:href="@{/provider/orders}" class="active">My Orders</a>
+        <a th:href="@{/provider/messages}">Messages</a>
+        <a th:href="@{/provider/profile}">My Profile</a>
+    </nav>
+    <form th:action="@{/logout}" method="post"><button type="submit">Logout</button></form>
+</aside>
+<main class="main-content">
+    <div class="orders-section">
+        <h2>Customer Orders</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Equipment</th>
+                <th>Customer</th>
+                <th>Date</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- This section will be populated with real data from the database -->
+            <tr>
+                <td>1</td>
+                <td>Tractor Model X</td>
+                <td>Karim Uddin</td>
+                <td>2025-08-10</td>
+                <td><span class="status pending">Pending</span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+</body>
+</html>

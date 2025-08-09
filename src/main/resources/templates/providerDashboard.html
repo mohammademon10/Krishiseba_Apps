@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Provider Dashboard - KrishiSeba</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #f4f7f6; display: flex; }
+        .sidebar { width: 250px; background-color: #2e7d32; color: white; position: fixed; height: 100%; padding: 20px; display: flex; flex-direction: column; }
+        .sidebar-header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #4caf50; }
+        .sidebar-header h2 { font-size: 1.8em; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .sidebar-logo { width: 40px; height: 40px; border-radius: 50%; }
+        .sidebar-nav { display: flex; flex-direction: column; gap: 10px; flex-grow: 1; }
+        .sidebar-nav a, .sidebar-logout button { color: white; text-decoration: none; padding: 12px 15px; border-radius: 8px; font-weight: 500; transition: background-color 0.3s; }
+        .sidebar-logout button { width: 100%; background: none; border: none; text-align: left; font-size: 1em; cursor: pointer; font-family: inherit; }
+        .sidebar-nav a:hover, .sidebar-nav a.active, .sidebar-logout button:hover { background-color: #4caf50; }
+        .main-content { margin-left: 250px; padding: 30px; width: calc(100% - 250px); }
+        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 2px solid #e0e0e0; }
+        header h1 { font-size: 2.2em; color: #2e7d32; }
+        .profile { display: flex; align-items: center; gap: 15px; }
+        .profile-img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid #2e7d32; }
+        .profile-info span { display: block; font-weight: 600; color: #333; }
+        .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; }
+        .card { background: white; border-radius: 10px; padding: 25px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); border-left: 5px solid #4caf50; }
+        .card h3 { color: #388e3c; margin-bottom: 10px; font-size: 1.2em; }
+        .card p { font-size: 2.5em; font-weight: 600; color: #1b5e20; }
+    </style>
+</head>
+<body>
+<aside class="sidebar">
+    <div class="sidebar-header">
+        <h2><img th:src="@{/images/krishiseba_logo.png}" alt="Logo" class="sidebar-logo" /><span>KrishiSeba</span></h2>
+    </div>
+    <nav class="sidebar-nav">
+        <a th:href="@{/provider-dashboard}" class="active">Dashboard</a>
+        <a th:href="@{/add-equipment}">Add Equipment</a>
+        <a th:href="@{/my-equipment}">My Equipment</a>
+        <a th:href="@{/provider/orders}">My Orders</a>
+        <a th:href="@{/provider/messages}">Messages</a>
+        <a th:href="@{/provider/profile}">My Profile</a>
+    </nav>
+    <div class="sidebar-logout">
+        <form th:action="@{/logout}" method="post"><button type="submit">Logout</button></form>
+    </div>
+</aside>
+<main class="main-content">
+    <header>
+        <h1>Welcome, <span sec:authentication="principal.username">Provider</span>!</h1>
+        <div class="profile">
+            <img th:src="@{/images/provider_avatar.png}" alt="Profile Picture" class="profile-img" />
+            <div class="profile-info">
+                <span sec:authentication="principal.username">provider@example.com</span>
+            </div>
+        </div>
+    </header>
+    <section class="cards">
+        <div class="card"><h3>Listed Equipment</h3><p>0</p></div>
+        <div class="card"><h3>Pending Orders</h3><p>0</p></div>
+        <div class="card"><h3>Total Earnings</h3><p>৳0</p></div>
+    </section>
+</main>
+</body>
+</html>

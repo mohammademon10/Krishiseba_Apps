@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Messages | KrishiSeba Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        body { background: #f4f7f6; display: flex; }
+        .sidebar { width: 240px; background: #388e3c; color: #fff; padding: 40px 0 0 0; display: flex; flex-direction: column; align-items: center; box-shadow: 2px 0 18px rgba(0,0,0,0.1); position: fixed; height: 100%; }
+        .sidebar h2 { margin-bottom: 30px; font-size: 1.7em; }
+        .sidebar-nav { width: 100%; margin-top: 20px; flex-grow: 1; }
+        .sidebar-nav a, .sidebar-nav button { padding: 16px 40px; color: #fff; text-decoration: none; font-weight: 600; font-size: 1.08em; border-left: 4px solid transparent; transition: background 0.2s; display: block; background: none; border-right: none; border-top: none; border-bottom: none; width: 100%; text-align: left; cursor: pointer; }
+        .sidebar-nav a.active, .sidebar-nav a:hover, .sidebar-nav button:hover { background: #2e7031; border-left: 4px solid #a8e063; }
+        .main-content { margin-left: 240px; padding: 48px 40px; flex: 1; }
+        .header { margin-bottom: 36px; }
+        .header h1 { font-size: 2.2em; color: #333; }
+        .messages-container { display: flex; height: calc(100vh - 200px); background: #fff; border-radius: 12px; box-shadow: 0 4px 18px rgba(0,0,0,0.05); overflow: hidden; }
+        .contacts-list { width: 30%; border-right: 1px solid #eee; }
+        .contacts-list h3 { padding: 15px; margin: 0; background: #f9f9f9; border-bottom: 1px solid #eee; color: #388e3c; }
+        .contact { padding: 15px; cursor: pointer; border-bottom: 1px solid #eee; }
+        .contact:hover, .contact.active { background: #e8f5e9; }
+        .contact strong { display: block; }
+        .contact span { font-size: 0.9em; color: #777; }
+        .chat-area { flex: 1; display: flex; flex-direction: column; }
+        .chat-header { padding: 15px; background: #f9f9f9; border-bottom: 1px solid #eee; font-weight: bold; color: #388e3c; }
+        .chat-messages { flex: 1; padding: 20px; overflow-y: auto; }
+        .message { margin-bottom: 15px; }
+        .message p { background: #e8f5e9; padding: 10px 15px; border-radius: 15px; display: inline-block; max-width: 80%; }
+        .message.sent p { background: #c8e6c9; }
+        .chat-input { padding: 20px; border-top: 1px solid #eee; display: flex; gap: 10px; }
+        .chat-input input { flex: 1; padding: 10px; border-radius: 8px; border: 1px solid #ddd; }
+        .chat-input button { background: #388e3c; color: #fff; border: none; padding: 0 20px; border-radius: 8px; cursor: pointer; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <aside class="sidebar">
+        <h2>Admin Panel</h2>
+        <nav class="sidebar-nav">
+            <a th:href="@{/admin-dashboard}">Dashboard</a>
+            <a th:href="@{/admin-users}">Users</a>
+            <a th:href="@{/admin-posts}">Posts</a>
+            <a th:href="@{/admin-reports}">Reports</a>
+            <a th:href="@{/admin-messages}" class="active">Messages</a>
+            <a th:href="@{/admin-settings}">Settings</a>
+            <form th:action="@{/logout}" method="post"><button type="submit">Logout</button></form>
+        </nav>
+    </aside>
+    <div class="main-content">
+        <div class="header">
+            <h1>Message Center</h1>
+        </div>
+        <div class="messages-container">
+            <div class="contacts-list">
+                <h3>Conversations</h3>
+                <!-- This will be populated dynamically -->
+                <div class="contact active">
+                    <strong>farmer@example.com</strong>
+                    <span>Enquiry about tractor rental...</span>
+                </div>
+                <div class="contact">
+                    <strong>provider@example.com</strong>
+                    <span>Payment issue report...</span>
+                </div>
+            </div>
+            <div class="chat-area">
+                <div class="chat-header">
+                    Chat with farmer@example.com
+                </div>
+                <div class="chat-messages">
+                    <!-- Messages will be loaded here -->
+                    <div class="message received"><p>Hello, I have a question about my recent order.</p></div>
+                    <div class="message sent"><p>Hello! How can I help you today?</p></div>
+                </div>
+                <div class="chat-input">
+                    <input type="text" placeholder="Type your message...">
+                    <button>Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

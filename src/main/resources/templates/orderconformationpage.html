@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Order Confirmation | KrishiSeba</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background: linear-gradient(135deg, #e8f5e9, #a5d6a7); display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+        .confirmation-container { background: #ffffffdd; padding: 40px 30px; border-radius: 20px; max-width: 600px; width: 100%; box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1); }
+        .confirmation-container h2 { color: #2e7d32; text-align: center; margin-bottom: 20px; font-size: 1.5rem; }
+        .confirmation-container p { font-size: 1.0rem; color: #2f4f2f; margin-bottom: 25px; text-align: center; }
+        .summary-box { background-color: #f9fff9; border: 2px solid #c5e1a5; padding: 25px 30px; border-radius: 15px; }
+        .summary-box h3 { color: #2cba31; margin-bottom: 15px; font-size: 1.5rem; }
+        .summary-item { margin-bottom: 12px; font-size: 1.1rem; color: #061201; }
+        .summary-item strong { font-weight: 700; }
+        .btn { display: block; width: 100%; background: #4caf50; color: white; padding: 16px; text-align: center; border-radius: 12px; font-size: 1.1rem; font-weight: 700; margin-top: 30px; text-decoration: none; }
+    </style>
+</head>
+<body>
+<div class="confirmation-container">
+    <h2>✅ Order Placed Successfully!</h2>
+    <p>Thank you for your request. The equipment provider will contact you shortly to confirm the details.</p>
+    <div class="summary-box">
+        <h3>Request Summary</h3>
+        <!-- This section will be dynamic in the future -->
+        <div class="summary-item"><strong>Equipment:</strong> Tractor</div>
+        <div class="summary-item"><strong>Start Date:</strong> 2025-08-10</div>
+        <div class="summary-item"><strong>Address:</strong> Dhanmondi, Dhaka</div>
+    </div>
+    <a th:href="@{/farmer-dashboard}" class="btn">Back to Dashboard</a>
+</div>
+</body>
+</html>

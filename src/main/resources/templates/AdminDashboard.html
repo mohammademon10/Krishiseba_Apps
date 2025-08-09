@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard | KrishiSeba</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        body { background: #f4f7f6; display: flex; }
+        .sidebar { width: 240px; background: #388e3c; color: #fff; padding: 40px 0 0 0; display: flex; flex-direction: column; align-items: center; box-shadow: 2px 0 18px rgba(0,0,0,0.1); position: fixed; height: 100%; }
+        .sidebar h2 { margin-bottom: 30px; font-size: 1.7em; }
+        .sidebar-nav { width: 100%; margin-top: 20px; flex-grow: 1; }
+        .sidebar-nav a, .sidebar-nav button { padding: 16px 40px; color: #fff; text-decoration: none; font-weight: 600; font-size: 1.08em; border-left: 4px solid transparent; transition: background 0.2s; display: block; background: none; border-right: none; border-top: none; border-bottom: none; width: 100%; text-align: left; cursor: pointer; }
+        .sidebar-nav a.active, .sidebar-nav a:hover, .sidebar-nav button:hover { background: #2e7031; border-left: 4px solid #a8e063; }
+        .main-content { margin-left: 240px; padding: 48px 40px; flex: 1; }
+        .dashboard-header { margin-bottom: 36px; }
+        .dashboard-header h1 { font-size: 2.2em; color: #333; }
+        .dashboard-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 28px; }
+        .card { background: #fff; border-radius: 16px; box-shadow: 0 4px 18px rgba(0,0,0,0.05); padding: 32px 28px; }
+        .card h3 { margin-bottom: 12px; color: #388e3c; }
+        .card p { font-size: 2.1em; color: #27ae60; font-weight: 800; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <aside class="sidebar">
+        <h2>Admin Panel</h2>
+        <nav class="sidebar-nav">
+            <a th:href="@{/admin-dashboard}" class="active">Dashboard</a>
+            <a th:href="@{/admin-users}">Users</a>
+            <a th:href="@{/admin-posts}">Posts</a>
+            <a th:href="@{/admin-reports}">Reports</a>
+            <a th:href="@{/admin-messages}">Messages</a>
+            <a th:href="@{/admin-settings}">Settings</a>
+            <form th:action="@{/logout}" method="post"><button type="submit">Logout</button></form>
+        </nav>
+    </aside>
+    <div class="main-content">
+        <div class="dashboard-header">
+            <h1>Welcome, Admin</h1>
+        </div>
+        <div class="dashboard-cards">
+            <div class="card"><h3>Total Users</h3><p>0</p></div>
+            <div class="card"><h3>Listed Equipment</h3><p>0</p></div>
+            <div class="card"><h3>Pending Orders</h3><p>0</p></div>
+            <div class="card"><h3>Total Revenue</h3><p>৳0</p></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipment Marketplace - KrishiSeba</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background: linear-gradient(135deg, #d0f0c0 0%, #a1d99b 100%); color: #2e3a26; }
+        .app-container { display: flex; }
+        .sidebar { width: 280px; background: #4caf50; color: white; padding: 2rem 1.5rem; position: fixed; height: 100vh; }
+        .sidebar-header { text-align: center; margin-bottom: 3rem; }
+        .sidebar-header h2 { font-size: 1.8rem; }
+        .sidebar-logo { width: 40px; height: 40px; border-radius: 50%; }
+        .sidebar-nav { display: flex; flex-direction: column; gap: 0.8rem; flex-grow: 1;}
+        .sidebar-nav a, .sidebar nav .logout-button { color: white; text-decoration: none; padding: 1rem 1.5rem; border-radius: 10px; }
+        .sidebar-nav a.active, .sidebar-nav a:hover, .sidebar nav .logout-button:hover { background: #388e3c; }
+        .sidebar nav .logout-button { background: none; border: none; width: 100%; text-align: left; font-family: inherit; font-size: 1em; cursor: pointer; font-weight: 500;}
+        .main-content { margin-left: 280px; padding: 2rem 3rem; flex: 1; }
+        .page-header h1 { font-size: 2rem; color: #2e7d32; margin-bottom: 2.5rem; }
+        .equipment-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+        .equipment-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 25px rgba(102, 187, 106, 0.25); }
+        .equipment-image { width: 100%; height: 200px; object-fit: cover; }
+        .equipment-details { padding: 1.5rem; }
+        .equipment-title { font-size: 1.25rem; font-weight: 800; color: #388e3c; margin-bottom: 0.75rem; }
+        .equipment-price { font-size: 1.5rem; font-weight: 700; color: #1b5e20; margin-bottom: 1rem; }
+        .equipment-specs { display: flex; justify-content: space-between; color: #4a6351; font-size: 0.875rem; margin-bottom: 1.5rem; }
+        .rent-button { display: block; width: 100%; padding: 0.875rem; background: #4caf50; color: white; border: none; border-radius: 12px; font-size: 1rem; font-weight: 700; cursor: pointer; text-decoration: none; text-align: center; }
+        .no-equipment-message { text-align: center; font-size: 1.2rem; color: #555; margin-top: 3rem; }
+    </style>
+</head>
+<body>
+<div class="app-container">
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h2><img th:src="@{/images/krishiseba_logo.png}" alt="Logo" class="sidebar-logo"> KrishiSeba</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <a th:href="@{/farmer-dashboard}">Dashboard</a>
+            <a th:href="@{/equipment-marketplace}" class="active">Find Equipment</a>
+            <a th:href="@{/farmer/orders}">My Orders</a>
+            <a th:href="@{/farmer/requests}">My Requests</a>
+            <a th:href="@{/farmer/messages}">Messages</a>
+            <a th:href="@{/farmer/profile}">My Profile</a>
+            <form th:action="@{/logout}" method="post"><button type="submit" class="logout-button">Logout</button></form>
+        </nav>
+    </aside>
+    <main class="main-content">
+        <header class="page-header"><h1>Equipment Marketplace</h1></header>
+        <div th:if="${#lists.isEmpty(equipmentList)}" class="no-equipment-message">
+            <p>No equipment is currently available in the marketplace.</p>
+        </div>
+        <div th:unless="${#lists.isEmpty(equipmentList)}" class="equipment-grid">
+            <div class="equipment-card" th:each="equipment : ${equipmentList}">
+                <img th:src="@{/images/tractor.jpg}" alt="Equipment Image" class="equipment-image" />
+                <div class="equipment-details">
+                    <h3 class="equipment-title" th:text="${equipment.name}">Equipment Name</h3>
+                    <div class="equipment-price" th:text="'৳' + ${equipment.pricePerDay} + '/day'">Price</div>
+                    <div class="equipment-specs">
+                        <span th:text="${equipment.brand}">Brand</span>
+                        <span th:text="${equipment.condition}">Condition</span>
+                    </div>
+                    <a th:href="@{/place-order}" class="rent-button">Request Rental</a>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

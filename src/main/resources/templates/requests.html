@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My Requests | KrishiSeba</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        /* Reusing the professional dashboard style */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background: #f0f4f0; min-height: 100vh; display: flex; color: #333; }
+        .sidebar { width: 260px; background: #2E7D32; color: white; display: flex; flex-direction: column; padding: 25px 0; position: fixed; height: 100vh; }
+        .sidebar-header { padding: 0 20px 25px 20px; text-align: center; border-bottom: 1px solid #4CAF50; display: flex; align-items: center; gap: 12px; }
+        .sidebar-header img { width: 40px; height: 40px; }
+        .sidebar-header h2 { font-size: 1.5em; font-weight: 600; }
+        .sidebar-nav { flex-grow: 1; margin-top: 20px; }
+        .sidebar-nav a, .sidebar-nav button { color: #e8f5e9; text-decoration: none; padding: 15px 30px; display: block; font-weight: 500; border: none; background: none; width: 100%; text-align: left; font-size: 1em; cursor: pointer; border-left: 4px solid transparent; transition: all 0.3s; }
+        .sidebar-nav a.active, .sidebar-nav a:hover, .sidebar-nav button:hover { background-color: #4CAF50; padding-left: 35px; border-left: 4px solid #c8e6c9; }
+        .main-content { margin-left: 260px; padding: 30px 40px; flex: 1; }
+        .header h1 { font-size: 2em; color: #2e7d32; margin-bottom: 30px; }
+        .content-box { background: #fff; border-radius: 10px; padding: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        p { font-size: 1.1em; color: #555; }
+    </style>
+</head>
+<body>
+<aside class="sidebar">
+    <div class="sidebar-header">
+        <img th:src="@{/images/krishiseba_logo.png}" alt="Logo" />
+        <h2>KrishiSeba</h2>
+    </div>
+    <nav class="sidebar-nav">
+        <a th:href="@{/farmer-dashboard}">Dashboard</a>
+        <a th:href="@{/equipment-marketplace}">Find Equipment</a>
+        <a th:href="@{/farmer/orders}">My Orders</a>
+        <a th:href="@{/farmer/requests}" class="active">My Requests</a>
+        <a th:href="@{/farmer/messages}">Messages</a>
+        <a th:href="@{/farmer/profile}">My Profile</a>
+    </nav>
+    <form th:action="@{/logout}" method="post"><button type="submit">Logout</button></form>
+</aside>
+<main class="main-content">
+    <div class="header">
+        <h1>My Equipment Requests</h1>
+    </div>
+    <div class="content-box">
+        <p>This page will show the status of all your pending and completed equipment rental requests.</p>
+        <p>This feature is currently under development.</p>
+    </div>
+</main>
+</body>
+</html>
